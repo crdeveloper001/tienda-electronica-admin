@@ -8,5 +8,5 @@ export interface IUserAccounts{
     clientUsername:string;
     clientRoleType:string;
     UserAccountActive?:string;
-    JWT?:string;
+    jwt?:string;
 }

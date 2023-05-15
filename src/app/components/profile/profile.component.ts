@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IAuthorization } from 'src/app/interfaces/Authorization';
+import { IUserAccounts } from 'src/app/interfaces/UserAccounts';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  payloadFromLogin: string;
+
+  constructor() { 
+    this.payloadFromLogin = '';
+  }
 
   ngOnInit(): void {
   }
