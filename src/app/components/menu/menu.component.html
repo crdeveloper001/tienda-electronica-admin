@@ -7,19 +7,37 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#userModal">Mi Perfil</a>
+            <a class="nav-link active" aria-current="page" routerLink="/Profile">Mi Perfil</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Productos
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/Add-New-Product">Agregar Nuevo Producto</a></li>
+              <li><a class="dropdown-item" routerLink="/ProductosDB">Ver Productos Actuales</a></li>
+              
+            </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Productos Actuales</a>
+            <a class="nav-link" routerLink="/Clients-Orders">Ordenes Del Sistema</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cuentas de Usuarios
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/Add-New-User">Agregar Nuevo Usuario</a></li>
+              <li><a class="dropdown-item" routerLink="/UserAccountsDB">Ver Usuarios Actuales</a></li>
+              
+            </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Ordenes Del Sistema</a>
+            <a class="nav-link" routerLink="/AppLogs">Logs Del Sistema</a>
+
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cuentas de Usuarios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Logs Del Sistema</a>
+            <a class="nav-link btn btn-success" routerLink="#">Log Out</a>
           </li>
         </ul>
       </div>

@@ -1,0 +1,41 @@
+<div class="container bg-dark">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Iniciar Sesión</h5>
+          <form [formGroup]="loginForm" (ngSubmit)="GenerateAuth()">
+            <div class="mb-3">
+              <label for="username" class="form-label">Nombre de usuario</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                placeholder="Enter Username"
+                formControlName="usernameInput"
+                required="true"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Enter Password"
+                formControlName="passwordInput"
+                required="true"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+              Iniciar sesión
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</div>

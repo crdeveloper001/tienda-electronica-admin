@@ -6,11 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MenuComponent } from './components/menu/menu.component';
-import { LoginComponent } from './components/login/login.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { AppLogsComponent } from './components/app-logs/app-logs.component';
-import { UserAccountsComponent } from './components/user-accounts/user-accounts.component';
-import { ProductsComponent } from './components/products/products.component';
+import { LoginComponent } from './components/UserAccountsComponents/login/login.component';
+import { ProfileComponent } from './components/UserAccountsComponents/profile/profile.component';
+import { AppLogsComponent } from './components/Others/app-logs/app-logs.component';
+import { UserAccountsComponent } from './components/UserAccountsComponents/user-accounts/user-accounts.component';
+import { ProductsComponent } from './components/ProductsComponents/products/products.component';
+import { ClientsOrdersComponent } from './components/Others/clients-orders/clients-orders.component';
+import { NewProductComponent } from './components/ProductsComponents/new-product/new-product.component';
+import { NewUserComponent } from './components/UserAccountsComponents/new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { ProductsComponent } from './components/products/products.component';
         ProfileComponent,
         AppLogsComponent,
         UserAccountsComponent,
-        ProductsComponent
+        ProductsComponent,
+        ClientsOrdersComponent,
+        NewProductComponent,
+        NewUserComponent
   ],
   imports: [
     BrowserModule,

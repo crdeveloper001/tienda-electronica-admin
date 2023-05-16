@@ -1,0 +1,100 @@
+<app-menu></app-menu>
+
+<div class="card border-primary m-3">
+  <div class="card-body">
+    <div class="container-fluid rounded mb-5 mx-auto d-flex">
+      <div class="row">
+        <div class="col-md-6 mx-auto border-right">
+          <div class="p-3 py-5">
+            <div class="d-flex  mb-3">
+              <h4 class="text-right">Profile</h4>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label class="labels">Nombre</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  readonly
+                  value="{{ payloadFromLogin[0]?.clientName }}"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="labels">Apellidos</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  value=""
+                  readonly
+                  value="{{ payloadFromLogin[0]?.clientLastName }}"
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <label class="labels">Telefono</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  readonly
+                  value="{{ payloadFromLogin[0]?.clientPhone }}"
+                />
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Correo Electronico</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  readonly
+                  value="{{ payloadFromLogin[0]?.clientEmail }}"
+                />
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Direccion Fisica</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  readonly
+                  value="{{ payloadFromLogin[0]?.clientDirection }}"
+                />
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Nombre de Usuario</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  readonly
+                  value="{{ payloadFromLogin[0]?.clientUsername }}"
+                />
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Rol Actual</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  readonly
+                  value="{{ payloadFromLogin[0]?.clientRoleType }}"
+                />
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Estado de la Cuenta</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  readonly
+                  value="{{ stateActiveAccount }}"
+                />
+              </div>
+            </div>
+
+            <div class="mt-5 text-center">
+              <button class="btn btn-primary profile-button" type="button">
+                Editar Informacion
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
