@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { log } from 'console';
+import { observable } from 'rxjs';
+import { IProducts } from 'src/app/interfaces/Products';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-products',
@@ -7,39 +11,44 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products = [
-    { id: 1, name: 'Product 1', price: 10.99 },
-    { id: 2, name: 'Product 2', price: 19.99 },
-    { id: 3, name: 'Product 3', price: 7.99 }
-  ];
-  productForm: FormGroup;
+  products:IProducts[];
+  productForm:FormGroup;
+ 
+  constructor(private service:ProductsService,private formBuilder:FormBuilder) {
+    this.products = [];
+    this.ShowAllProducts()
 
-  constructor(private formBuilder: FormBuilder) {
     this.productForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]]
-    });
+      InputSearchProduct: new FormControl("",Validators.required)
+    })
+    
   }
-  editProduct(productId: number) {
-    // Logic to handle editing the product with the given ID
-    console.log('Edit product with ID:', productId);
+  
+  ShowAllProducts(){
+    this.service.GetAllProducts().subscribe((data:any) =>{
+      this.products = data;
+      
+      
+    })
+
+  }
+  SearchProductByName(){
+    let productName:string = this.productForm.get('InputSearchProduct')?.value;
+    
+    
+    this.service.GetOneProduct(productName).subscribe((results:any) =>{
+      this.products = results;
+    })
+  }
+  SearchProductByCategory(){
+    let productType:string = this.productForm.get('InputSearchProduct')?.value;
+   
+    this.service.GetOneProduct(productType).subscribe((results:any) =>{
+      this.products = results;
+    })
   }
 
-  onSubmit() {
-    if (this.productForm.invalid) {
-      return;
-    }
-    
-    // Logic to handle submitting the new product data
-    const newProduct = {
-      name: this.productForm.value.name,
-      price: this.productForm.value.price
-    };
-    console.log('New product:', newProduct);
-    
-    // Reset the form
-    this.productForm.reset();
-  }
+ 
   ngOnInit(): void {
   }
 

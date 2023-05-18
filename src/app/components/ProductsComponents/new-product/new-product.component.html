@@ -1,1 +1,33 @@
-<p>new-product works!</p>
+<app-menu></app-menu>
+
+<div class="container-fluid">
+  <h4 class="text-center">Nuevo Producto</h4>
+    
+  <form [formGroup]="productFormGroup" (ngSubmit)="AddNewProduct()">
+    <div class="row justify-content-center">
+      <div class="col-sm-6">
+        <label for="InputName">Nombre</label>
+        <input class="form-control" type="text" required formControlName="productNameInput" />
+        <label for="InputName">Descripcion</label>
+        <textarea cols="40" class="form-control" required formControlName="productDescriptionInput"></textarea>
+        <label for="InputName">Tipo</label>
+        <select class="form-control" name="InputType" id="InputType" formControlName="productTypeInput">
+          <option value="No Item Selected" aria-readonly="true">--SELECT--</option>
+          <option value="Camisas">Camisas</option>
+          <option value="Pantalones">Pantalones</option>
+          <option value="Ropa Interior">Ropa Interior</option>
+          <option value="Zapatos">Zapatos</option>
+          <option value="Electronicos">Electronicos</option>
+        </select>
+        <label for="InputName">Imagen de producto</label>
+        <input class="form-control" type="text" required formControlName="productUrlImageInput"/>
+        <label for="InputName">Precio Base</label>
+        <input class="form-control w-25" type="number" required formControlName="productPriceInput"/>
+        <label for="InputName">Cantidad en Inventario</label>
+        <input class="form-control w-25" type="number" required formControlName="productStockInput"/>
+        <hr>
+        <button type="submit" class="btn btn-success" [disabled]="productFormGroup.invalid">Registrar Producto</button>
+      </div>
+    </div>
+  </form>
+</div>

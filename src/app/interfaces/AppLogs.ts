@@ -1,6 +1,6 @@
 export interface IAppLogs{
-    _id: string;
+    _id?: string;
     eventType: string;
     eventDescription: string;
-    eventDate: Date;
+    eventDate: string;
 }

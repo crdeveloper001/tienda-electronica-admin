@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: "AppLogs", component: AppLogsComponent },
   { path: "UserAccountsDB", component: UserAccountsComponent },
   { path: "Add-New-User", component:NewUserComponent},
-  { path: "ProductsDB", component: ProductsComponent },
+  { path: "View-Products", component: ProductsComponent },
   { path: "Add-New-Product", component:NewProductComponent},
   { path: "Clients-Orders",component:ClientsOrdersComponent},
   { path: "**", redirectTo: "Login", pathMatch: "full" },

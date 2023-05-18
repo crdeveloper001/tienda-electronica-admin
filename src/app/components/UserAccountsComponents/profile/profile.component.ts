@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
     if(storedDataProfile){
       this.payloadFromLogin = JSON.parse(storedDataProfile);
       this.payloadFromLogin[0].clientPassword = null;
-      console.log(this.payloadFromLogin);
+      
       if(this.payloadFromLogin[0]?.userAccountActive){
         this.stateActiveAccount = "Activo"
       }else{

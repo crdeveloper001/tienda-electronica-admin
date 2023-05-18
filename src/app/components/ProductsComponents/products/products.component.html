@@ -1,31 +1,65 @@
 <app-menu></app-menu>
 
-    <div class="container-fluid">
-
-        <div></div>
-
-
-
-        <table class="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let product of products">
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>
-                  <button type="button" class="btn btn-primary btn-sm" (click)="editProduct(product.id)">Edit</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-1">
+      <form [formGroup]="productForm" (ngSubmit)="SearchProductByName()">
+        <label for="">Buscar Producto</label>
+        <input class="form-control" type="search" formControlName="InputSearchProduct"/>
+        <br>
+        <button class="btn btn-primary" type="submit">Buscar</button>
+      </form>
     </div>
-
-
+    <div class="col-sm-2">
+      <form [formGroup]="productForm" (change)="SearchProductByCategory()">
+        <label for="">Buscar por categoria</label>
+        <select class="form-control" name="InputType" id="InputType" formControlName="InputSearchProduct">
+          <option value="No Item Selected" aria-readonly="true">--SELECT--</option>
+          <option value="Camisas">Camisas</option>
+          <option value="Pantalones">Pantalones</option>
+          <option value="Ropa Interior">Ropa Interior</option>
+          <option value="Zapatos">Zapatos</option>
+          <option value="Electronicos">Electronicos</option>
+        </select>
+      </form>
+    </div>
+  </div>
+  
+  <hr>
+  <a class="link-active" (click)=ShowAllProducts()>All products</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Tipo</th>
+        <th>Precio</th>
+        <th>En Stock</th>
+        <th>Imagen de Producto</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let i = index">
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productDetails }}</td>
+        <td>{{ product.productType }}</td>
+        <td>{{ product.productPrice }}</td>
+        <td>{{ product.productStock }}</td>
+        <td>
+          <img
+            style="width: 125px"
+            class="img-fluid"
+            src="{{ product.productImageUrl }}"
+            alt=""
+          />
+        </td>
+        <td>
+          <button class="btn btn-warning">
+            Editar {{ product.productName }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
