@@ -6,7 +6,8 @@ export interface IUserAccounts{
     clientEmail:string;
     clientDirection:string;
     clientUsername:string;
+    clientPassword:string;
     clientRoleType:string;
-    UserAccountActive?:string;
+    userAccountActive?:string;
     jwt?:string;
 }

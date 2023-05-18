@@ -1,1 +1,89 @@
-<p>new-user works!</p>
+<app-menu></app-menu>
+
+<div class="container-fluid">
+  <h4 class="text-center">Nuevo Usuario</h4>
+
+  <form [formGroup]="userAccountForm" (ngSubmit)="AddNewUser()">
+    <div class="row justify-content-center">
+      <div class="col-sm-6">
+        <label for="">Cedula</label>
+        <input
+          class="form-control w-25"
+          type="number"
+          required
+          formControlName="InputId"
+        />
+        <label for="">Nombre</label>
+        <input
+          class="form-control w-"
+          type="text"
+          required
+          formControlName="InputName"
+        />
+        <label for="">Apellidos</label>
+        <input
+          class="form-control"
+          type="text"
+          required
+          formControlName="InputLastName"
+        />
+        <label for="">Telefono</label>
+        <input
+          class="form-control"
+          type="tel"
+          required
+          formControlName="InputPhone"
+        />
+        <label for="">Correo Electronico</label>
+        <input
+          class="form-control"
+          type="email"
+          required
+          formControlName="InputEmail"
+        />
+        <label for="">Direccion Fisica</label>
+        <textarea
+          rows="2"
+          class="form-control"
+          type="text"
+          required
+          formControlName="InputDirection"
+        ></textarea>
+        <label for="">Cuenta de Usuario</label>
+        <input
+          class="form-control"
+          type="text"
+          required
+          placeholder="Puede ser el correo o un usuario custom"
+          formControlName="InputUserAccount"
+        />
+
+        <br />
+        <label for="">Contraaseña</label>
+        <input
+          class="form-control"
+          type="password"
+          required
+          formControlName="InputPassword"
+        />
+        <label for="">Rol</label>
+        <select
+          class="form-control"
+          name=""
+          id=""
+          title="Rol Actual"
+          required
+          formControlName="InputRolType"
+        >
+          <option value="">--SELECT--</option>
+          <option value="Administrator">Administrator</option>
+          <option value="Client">Client</option>
+        </select>
+        <hr />
+        <button class="btn btn-success" type="submit" [disabled]="userAccountForm.invalid">
+          Agregar Nuevo Usuario
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { IUserAccounts } from 'src/app/interfaces/UserAccounts';
+import { UserAccountsService } from 'src/app/services/user-accounts.service';
 
 @Component({
   selector: 'app-user-accounts',
@@ -6,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-accounts.component.css']
 })
 export class UserAccountsComponent implements OnInit {
+  
+  userAccounts: IUserAccounts[];
+  constructor(private service:UserAccountsService,) { 
+    this.userAccounts = [];
+    this.ShowAllUserAccounts();
+  }
 
-  constructor() { }
+  ShowAllUserAccounts(){
+    this.service.GetAllUserAccounts().subscribe((result:any) =>{
+      this.userAccounts = result;
+      this.userAccounts.forEach(element => {
+        if(element.userAccountActive){
+          element.userAccountActive = "Active"
+        }
+        if (!element.userAccountActive) {
+          element.userAccountActive = "Inactive"
+        }
+      });
+    })
+  }
 
+  
   ngOnInit(): void {
   }
 

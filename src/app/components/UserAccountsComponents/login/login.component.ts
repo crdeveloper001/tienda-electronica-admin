@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   credentials: IAuthorization;
   payload: IUserAccounts[] = [];
+  dateSys: Date = new Date();
   appLogsNew: IAppLogs;
 
   constructor(
@@ -35,30 +36,31 @@ export class LoginComponent implements OnInit {
       passwordInput: new FormControl("", Validators.required),
     });
     this.credentials = { password: "", username: "" };
-    const dateSys = new Date();
-    dateSys.toLocaleDateString("en-US");
+    this.appLogsNew = {
+      eventDate: "",
+      eventDescription: "",
+      eventType: "",
+    };
+    this.dateSys.toLocaleDateString("en-US");
+  }
 
+  async GenerateAuth() {
+    this.credentials = {
+      username: this.loginForm.get("usernameInput")?.value,
+      password: this.loginForm.get("passwordInput")?.value,
+    };
     this.appLogsNew = {
       eventType: "Autenticacion",
       eventDescription:
         "Intento de autenticacion en el app administrador por: " +
-        this.loginForm.get("usernameInput")?.value,
-      eventDate: `Fecha: ${dateSys.getDate()}/${dateSys.getMonth()}/${dateSys.getFullYear()} Hora: ${dateSys.getHours()}:${dateSys.getMinutes()}`,
+        this.credentials.username,
+      eventDate: `Fecha: ${this.dateSys.getDate()}/${this.dateSys.getMonth()}/${this.dateSys.getFullYear()} Hora: ${this.dateSys.getHours()}:${this.dateSys.getMinutes()}`,
     };
-  }
-
-  async GenerateAuth() {
     this.appLogsService
       .PostAppLogs(this.appLogsNew)
       .subscribe((result: any) => {
         console.log(result);
       });
-
-    this.credentials = {
-      username: this.loginForm.get("usernameInput")?.value,
-      password: this.loginForm.get("passwordInput")?.value,
-    };
-
     this.service.PostAuthorization(this.credentials).subscribe(
       (result: any) => {
         this.payload.pop();

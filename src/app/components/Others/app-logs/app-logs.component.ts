@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IAppLogs } from 'src/app/interfaces/AppLogs';
+import { AppLogsService } from 'src/app/services/app-logs.service';
 
 @Component({
   selector: 'app-app-logs',
@@ -7,8 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppLogsComponent implements OnInit {
 
-  constructor() { }
+  appLogs:IAppLogs[];
 
+  constructor(private service:AppLogsService) { 
+    this.appLogs = []
+    this.ShowAllLogsEvents();
+  }
+
+
+  ShowAllLogsEvents(){
+    this.service.GetAllAppsLogs().subscribe((data:any) =>{
+      this.appLogs = data;
+      console.log(this.appLogs);
+      
+    })
+  }
   ngOnInit(): void {
   }
 
