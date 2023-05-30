@@ -14,6 +14,7 @@ import { ProductsComponent } from './components/ProductsComponents/products/prod
 import { ClientsOrdersComponent } from './components/Others/clients-orders/clients-orders.component';
 import { NewProductComponent } from './components/ProductsComponents/new-product/new-product.component';
 import { NewUserComponent } from './components/UserAccountsComponents/new-user/new-user.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NewUserComponent } from './components/UserAccountsComponents/new-user/n
         ProductsComponent,
         ClientsOrdersComponent,
         NewProductComponent,
-        NewUserComponent
+        NewUserComponent,
+        FooterComponent
   ],
   imports: [
     BrowserModule,

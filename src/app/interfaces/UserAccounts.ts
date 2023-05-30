@@ -8,6 +8,6 @@ export interface IUserAccounts{
     clientUsername:string;
     clientPassword:string;
     clientRoleType:string;
-    userAccountActive?:string;
+    userAccountActive?:boolean;
     jwt?:string;
 }

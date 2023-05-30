@@ -15,9 +15,13 @@ export class UserAccountsService {
   GetAllUserAccounts(){
     return this.httpRequest.get<IUserAccounts[]>(Endpoints.BASE_ENDPOINT+Endpoints.serviceUserAccounts);
     
-  }
+  } 
   PostUserAccount(userAccount:IUserAccounts):Observable<IUserAccounts>{
     return this.httpRequest.post<IUserAccounts>(Endpoints.BASE_ENDPOINT+Endpoints.serviceUserAccounts,userAccount);
+  }
+
+  PutUserAccount(update:IUserAccounts):Observable<IUserAccounts>{
+    return this.httpRequest.put<IUserAccounts>( Endpoints.BASE_ENDPOINT+Endpoints.serviceUserAccounts,update);
   }
   
 }

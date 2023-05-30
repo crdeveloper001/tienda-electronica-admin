@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-md-6 mx-auto border-right">
           <div class="p-3 py-5">
-            <div class="d-flex  mb-3">
+            <div class="d-flex mb-3">
               <h4 class="text-right">Profile</h4>
             </div>
             <div class="row mt-2">
@@ -88,9 +88,134 @@
             </div>
 
             <div class="mt-5 text-center">
-              <button class="btn btn-primary profile-button" type="button">
+              <button
+                class="btn btn-primary profile-button"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#modalId"
+              >
                 Editar Informacion
               </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="modalId"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="modalTitleId"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg" role="document">
+                  <form [formGroup]="formUpdateProfile" (ngSubmit)="updateProfile()">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                          Editar Cuenta:
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="col-md-8 mx-auto">
+                          <label for="">ID</label>
+                          <input
+                            class="form-control"
+                            type="tel"
+                            readonly
+                            value="{{ payloadFromLogin[0]?._id }}"
+                            formControlName="InputId"
+                          />
+                          <label for="">Nombre</label>
+                          <input
+                            class="form-control"
+                            type="text"
+                            value="{{ payloadFromLogin[0]?.clientName }}"
+                            formControlName="InputName"
+                          />
+                          <label for="">Apellidos</label>
+                          <input
+                            class="form-control"
+                            type="text"
+                            value="{{ payloadFromLogin[0]?.clientLastName }}"
+                            formControlName="InputLastName"
+                          />
+                          <label for="">Telefono</label>
+                          <input
+                            class="form-control"
+                            type="tel"
+                            value="{{ payloadFromLogin[0]?.clientPhone }}"
+                            formControlName="InputPhone"
+                          />
+                          <label for="">Correo Electronico</label>
+                          <input
+                            class="form-control"
+                            type="email"
+                            value="{{ payloadFromLogin[0]?.clientEmail }}"
+                            formControlName="InputEmail"
+                          />
+                          <label for="">Direccion Fisica</label>
+                          <input
+                            class="form-control"
+                            type="text"
+                            value="{{ payloadFromLogin[0]?.clientDirection }}"
+                            formControlName="InputDirection"
+                          />
+                          <label for="">Nombre de Usuario</label>
+                          <input
+                            class="form-control"
+                            type="text"
+                            value="{{ payloadFromLogin[0]?.clientUsername }}"
+                            formControlName="InputUserAccount"
+                          />
+                          <label for="">Contraseña</label>
+                          <input
+                            class="form-control"
+                            type="password"
+                            value="{{ payloadFromLogin[0]?.clientPassword }}"
+                            formControlName="InputPassword"
+                          />
+                          <label for="">Repite la contraseña</label>
+                          <input
+                            class="form-control"
+                            type="password"
+                           
+                            formControlName="InputPasswordConfirm"
+                          />
+                          <div class="alert alert-danger" role="alert" *ngIf="stateActiveAlertPassword">
+                            <strong>LAS CONTRASEÑAS NO COINCIDEN</strong> 
+                          </div>
+                          
+                          <hr />
+                          <span>Current Role</span>
+                          <input
+                            class="form-control"
+                            type="text"
+                            readonly
+                            value="{{ payloadFromLogin[0]?.clientRoleType }}"
+                          />
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary" [disabled]="formUpdateProfile.invalid">
+                          Guardar Informacion
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -11,8 +11,10 @@ import { UserAccountsService } from 'src/app/services/user-accounts.service';
 export class UserAccountsComponent implements OnInit {
   
   userAccounts: IUserAccounts[];
+  stateUserAccountActive:string='';
   constructor(private service:UserAccountsService,) { 
     this.userAccounts = [];
+
     this.ShowAllUserAccounts();
   }
 
@@ -21,10 +23,10 @@ export class UserAccountsComponent implements OnInit {
       this.userAccounts = result;
       this.userAccounts.forEach(element => {
         if(element.userAccountActive){
-          element.userAccountActive = "Active"
+          element.userAccountActive = true
         }
         if (!element.userAccountActive) {
-          element.userAccountActive = "Inactive"
+          element.userAccountActive = false
         }
       });
     })

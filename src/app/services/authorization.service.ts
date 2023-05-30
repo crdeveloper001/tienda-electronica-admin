@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IAuthorization } from '../interfaces/Authorization';
 import { Observable } from 'rxjs';
+import { Endpoints } from '../utils/Endpoints';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
 
-  private readonly API_SERVER:string = "https://localhost:7149/api/Authorization";
+ 
 
   constructor(private request:HttpClient) { }
 
   PostAuthorization(credentials:IAuthorization):Observable<IAuthorization>{
-    return this.request.post<IAuthorization>(this.API_SERVER,credentials);
+    return this.request.post<IAuthorization>(Endpoints.BASE_ENDPOINT+Endpoints.auth_Endpoint,credentials);
   }
 }

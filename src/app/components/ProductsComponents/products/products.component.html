@@ -27,39 +27,42 @@
   
   <hr>
   <a class="link-active" (click)=ShowAllProducts()>All products</a>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Descripcion</th>
-        <th>Tipo</th>
-        <th>Precio</th>
-        <th>En Stock</th>
-        <th>Imagen de Producto</th>
-        <th>Opciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of products; let i = index">
-        <td>{{ product.productName }}</td>
-        <td>{{ product.productDetails }}</td>
-        <td>{{ product.productType }}</td>
-        <td>{{ product.productPrice }}</td>
-        <td>{{ product.productStock }}</td>
-        <td>
-          <img
-            style="width: 125px"
-            class="img-fluid"
-            src="{{ product.productImageUrl }}"
-            alt=""
-          />
-        </td>
-        <td>
-          <button class="btn btn-warning">
-            Editar {{ product.productName }}
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Tipo</th>
+          <th>Precio</th>
+          <th>En Stock</th>
+          <th>Imagen de Producto</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; let i = index">
+          <td>{{ product.productName }}</td>
+          <td>{{ product.productDetails }}</td>
+          <td>{{ product.productType }}</td>
+          <td>{{ product.productPrice }}</td>
+          <td>{{ product.productStock }}</td>
+          <td>
+            <img
+              style="width: 125px"
+              class="img-fluid"
+              src="{{ product.productImageUrl }}"
+              alt=""
+            />
+          </td>
+          <td>
+            <button class="btn btn-warning">
+              Editar {{ product.productName }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
 </div>

@@ -35,7 +35,7 @@ export class NewUserComponent implements OnInit {
       clientPhone:0,
       clientRoleType:'',
       clientUsername:'',
-      userAccountActive:""
+      userAccountActive:false
     }
   }
 
@@ -50,7 +50,7 @@ export class NewUserComponent implements OnInit {
       clientPassword:this.userAccountForm.get('InputPassword')?.value,
       clientRoleType:this.userAccountForm.get('InputRolType')?.value,
       clientUsername:this.userAccountForm.get('InputUserAccount')?.value,
-      userAccountActive:"true"
+      //userAccountActive:"true"
     }
 
     this.service.PostUserAccount(this.newUserAccount).subscribe((result:any) =>{
