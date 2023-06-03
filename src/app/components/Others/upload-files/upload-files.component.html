@@ -1,0 +1,6 @@
+
+<form [formGroup]="attachmentForm" (ngSubmit)="UploadImage()" enctype="multipart/form-data">
+    <label for="">Select a image</label>
+    <input class="form-control" type="file" (change)="onFileSelected($event)" formControlName="ImageFile">
+    <button class="btn btn-sucess" type="submit" [disabled]="attachmentForm.invalid">Adjuntar</button>
+</form>

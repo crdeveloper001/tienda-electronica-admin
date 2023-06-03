@@ -31,6 +31,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          
           <th>Nombre</th>
           <th>Descripcion</th>
           <th>Tipo</th>
@@ -42,6 +43,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of products; let i = index">
+      
           <td>{{ product.productName }}</td>
           <td>{{ product.productDetails }}</td>
           <td>{{ product.productType }}</td>

@@ -36,7 +36,7 @@ export class ProductsComponent implements OnInit {
   }
 
   async sendProductData(info: IProducts) {
-    await this.infoSender.productSelectedInfo.emit(info);
+    await this.infoSender.sendData(info);
     this.navigation.navigateByUrl('Edit-Product');
   }
 
