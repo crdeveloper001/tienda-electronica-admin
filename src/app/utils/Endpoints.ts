@@ -1,6 +1,6 @@
 export class Endpoints{
-    //public static BASE_ENDPOINT:string = "https://app-710bc097-528d-48f3-acde-438b63d8f6e0.cleverapps.io";
-     public static BASE_ENDPOINT:string = "https://localhost:7149";
+    public static BASE_ENDPOINT:string = "https://app-710bc097-528d-48f3-acde-438b63d8f6e0.cleverapps.io";
+     //public static BASE_ENDPOINT:string = "https://localhost:7149";
 
     //Authorization URIS
     public static auth_Endpoint:string = "/api/Authorization/";
