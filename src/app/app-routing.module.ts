@@ -11,6 +11,7 @@ import { ProductsComponent } from "./components/ProductsComponents/products/prod
 import { ClientsOrdersComponent } from "./components/Others/clients-orders/clients-orders.component";
 import { NewUserComponent } from "./components/UserAccountsComponents/new-user/new-user.component";
 import { NewProductComponent } from "./components/ProductsComponents/new-product/new-product.component";
+import { EditProductComponent } from "./components/ProductsComponents/edit-product/edit-product.component";
 
 const routes: Routes = [
   { path: "Login", component: LoginComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: "Add-New-User", component:NewUserComponent},
   { path: "View-Products", component: ProductsComponent },
   { path: "Add-New-Product", component:NewProductComponent},
+  { path: "Edit-Product",component:EditProductComponent},
   { path: "Clients-Orders",component:ClientsOrdersComponent},
   { path: "**", redirectTo: "Login", pathMatch: "full" },
 ];

@@ -23,4 +23,12 @@ export class ProductsService {
   GetOneProduct(name:string){
     return this.httpRequest.get<IProducts>(Endpoints.BASE_ENDPOINT+Endpoints.service_SearchOneProduct+name);
   }
+
+  PutOneProduct(update:IProducts):Observable<IProducts>{
+    return this.httpRequest.put<IProducts>(Endpoints.BASE_ENDPOINT+Endpoints.serviceProduct,update)
+  }
+
+  DeleteOneProduct(id:string){
+    return this.httpRequest.delete<string>(Endpoints.BASE_ENDPOINT+Endpoints.serviceProduct+"/"+id);
+  }
 }

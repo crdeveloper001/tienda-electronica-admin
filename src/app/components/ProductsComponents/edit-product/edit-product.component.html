@@ -1,0 +1,90 @@
+<app-menu></app-menu>
+
+<div class="container-fluid">
+  <h4 class="text-center">Editar Producto: {{ product[0].productName }}</h4>
+
+  <form [formGroup]="productFormGroup" (ngSubmit)="UpdateProductInfo()">
+    <div class="row justify-content-center">
+      <div class="col-sm-6">
+        <label for="InputName">Product ID</label>
+        <input
+        id="InputName"
+          class="form-control"
+          type="text"
+          required
+          disabled
+          value="{{ product[0]._id | json}}"
+        />
+        <label for="InputName">Nombre</label>
+        <input
+        id="InputName"
+          class="form-control"
+          type="text"
+          required
+          formControlName="productNameInput"
+          value="{{ product[0].productName }}"
+        />
+        <label for="InputDetails">Descripcion</label>
+        <textarea
+        id="InputDetails"
+          cols="40"
+          class="form-control"
+          required
+          formControlName="productDescriptionInput"
+          value="{{ product[0].productDetails }}"
+        ></textarea>
+        <label for="InputType">Tipo</label>
+        <select
+          class="form-control"
+          name="InputType"
+          id="InputType"
+          formControlName="productTypeInput"
+        >
+          <option value="No Item Selected" aria-readonly="true">
+            --SELECT--
+          </option>
+          <option value="Camisas">Camisas</option>
+          <option value="Pantalones">Pantalones</option>
+          <option value="Ropa Interior">Ropa Interior</option>
+          <option value="Zapatos">Zapatos</option>
+          <option value="Electronicos">Electronicos</option>
+        </select>
+        <label for="InputURLIUImage">Imagen de producto</label>
+        <input
+        id="InputURLIUImage"
+          class="form-control"
+          type="text"
+          required
+          formControlName="productUrlImageInput"
+          value="{{ product[0].productImageUrl }}"
+        />
+        <label for="InputPrice">Precio Base</label>
+        <input
+        id="InputPrice"
+          class="form-control w-25"
+          type="number"
+          required
+          formControlName="productPriceInput"
+          value="{{ product[0].productPrice }}"
+        />
+        <label for="InputStock">Cantidad en Inventario</label>
+        <input
+        id="InputStock"
+          class="form-control w-25"
+          type="number"
+          required
+          formControlName="productStockInput"
+          value="{{ product[0].productStock }}"
+        />
+        <hr />
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="productFormGroup.invalid"
+        >
+          Editar Producto
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

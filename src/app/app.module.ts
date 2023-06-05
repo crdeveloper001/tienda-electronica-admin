@@ -15,6 +15,8 @@ import { ClientsOrdersComponent } from './components/Others/clients-orders/clien
 import { NewProductComponent } from './components/ProductsComponents/new-product/new-product.component';
 import { NewUserComponent } from './components/UserAccountsComponents/new-user/new-user.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { EditProductComponent } from './components/ProductsComponents/edit-product/edit-product.component';
+import { UploadFilesComponent } from './components/Others/upload-files/upload-files.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { FooterComponent } from './components/footer/footer.component';
         ClientsOrdersComponent,
         NewProductComponent,
         NewUserComponent,
-        FooterComponent
+        FooterComponent,
+        EditProductComponent,
+        UploadFilesComponent
   ],
   imports: [
     BrowserModule,
