@@ -22,6 +22,10 @@ export class ProfileComponent implements OnInit {
   stateActiveAlertPassword: boolean = false;
   formUpdateProfile: FormGroup;
 
+  //StateForSucess/Errors
+  statusUpdate:boolean = false;
+  
+
   constructor(
     private builderForm: FormBuilder,
     private service: UserAccountsService
@@ -49,8 +53,26 @@ export class ProfileComponent implements OnInit {
       clientUsername: "",
     };
   }
+  /**LOAD USER INFORMATION INTO THE FORM OF THE UPDATE MODAL FROM PAYLOAD IN LS */
+  getUserPayload() {
+    var currentPayload = localStorage.getItem("payload");
+    if (currentPayload !== null) {
+      var parsedPayload = JSON.parse(currentPayload);
+      this.formUpdateProfile.get("InputName")?.setValue(parsedPayload[0]?.clientName)
+      this.formUpdateProfile.get("InputLastName")?.setValue(parsedPayload[0]?.clientLastName)
+      this.formUpdateProfile.get("InputPhone")?.setValue(parsedPayload[0]?.clientPhone)
+      this.formUpdateProfile.get("InputEmail")?.setValue(parsedPayload[0]?.clientEmail)
+      this.formUpdateProfile.get("InputDirection")?.setValue(parsedPayload[0]?.clientDirection)
+      this.formUpdateProfile.get("InputUserAccount")?.setValue(parsedPayload[0]?.clientUsername)
+      
+    }
 
+
+  }
+
+  /**CAPTURE THE NEW INFORMATION IN THE FORM AND SEND THE NEW PAYLOAD TO THE SERVER TO UPDATE THE ACCOUNT */
   updateProfile() {
+
     this.payloadUpdateProfile = {
       _id: this.payloadFromLogin[0]?._id,
       clientName: this.formUpdateProfile.get("InputName")?.value,
@@ -61,7 +83,7 @@ export class ProfileComponent implements OnInit {
       clientPassword: this.formUpdateProfile.get("InputPassword")?.value,
       clientRoleType: "Administrator",
       clientUsername: this.formUpdateProfile.get("InputUserAccount")?.value,
-      userAccountActive:true
+      userAccountActive: true
     };
 
     let RepeatPassword = this.formUpdateProfile.get(
@@ -82,12 +104,26 @@ export class ProfileComponent implements OnInit {
       this.formUpdateProfile.get("InputPasswordConfirm")?.value
     ) {
       this.service.PutUserAccount(this.payloadUpdateProfile).subscribe(
-        (result: any) => {},
+        (result: any) => {
+          alert(result)
+         },
         (error: HttpErrorResponse) => {
-          alert(
-            "OCURRIO UN ERROR AL ACTUALIZAR LA INFORMACION:" +
-              JSON.stringify(error.error.text)
-          );
+
+          const httpResponse = error.error.text;
+
+          switch(httpResponse){
+            case "User account updated":
+              this.statusUpdate = true
+              setTimeout(() => {
+                this.statusUpdate = false;
+              }, 5000);
+              break;
+           
+            default:
+              
+          }
+
+         
         }
       );
     }
