@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
+import { Router } from "@angular/router";
 import { IProducts } from "src/app/interfaces/Products";
 import { ProductsService } from "src/app/services/products.service";
 import { SharedInformationUtils } from "src/app/services/utils/send-info-to-edit-product.service";
@@ -18,12 +19,14 @@ import { SharedInformationUtils } from "src/app/services/utils/send-info-to-edit
 export class EditProductComponent implements OnInit {
   product: IProducts[] = [];
   productFormGroup: FormGroup;
+  statusUpdate:boolean = false;
 
   constructor(
     private sharedService: SharedInformationUtils,
     private service: ProductsService,
     private formBuilder: FormBuilder,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private navigation:Router
   ) {
     this.productFormGroup = this.formBuilder.group({
      
@@ -53,7 +56,12 @@ export class EditProductComponent implements OnInit {
         alert(JSON.stringify(result));
       },
       (error: HttpErrorResponse) => {
-        alert(JSON.stringify(error));
+        this.statusUpdate = true;
+        setTimeout(() => {
+          this.statusUpdate = false;
+          this.navigation.navigateByUrl("View-Products")
+        }, 3000);
+        
       }
     );
   }

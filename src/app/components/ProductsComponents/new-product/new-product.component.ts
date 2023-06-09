@@ -54,7 +54,7 @@ export class NewProductComponent implements OnInit {
     this.service.PostNewProduct(this.product).subscribe((result:any) =>{
       alert(result);
     },(error:HttpErrorResponse) =>{
-      alert(JSON.stringify(error));
+      alert(JSON.stringify(error.error.text));
     })
 
   }
