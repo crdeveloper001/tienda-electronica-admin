@@ -82,8 +82,14 @@
           class="btn btn-success"
           [disabled]="productFormGroup.invalid"
         >
-          Editar Producto
+          Actualizar Producto 
         </button>
+        <br>
+        <br>
+        <div class="alert alert-success" role="alert" *ngIf="statusUpdate">
+          <strong>Producto Actualizado</strong> 
+        </div>
+        
       </div>
     </div>
   </form>

@@ -53,6 +53,8 @@ export class NewUserComponent implements OnInit {
       //userAccountActive:"true"
     }
 
+    
+
     this.service.PostUserAccount(this.newUserAccount).subscribe((result:any) =>{
       alert(JSON.stringify(result));
     },(error:HttpErrorResponse) =>{

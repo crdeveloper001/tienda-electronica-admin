@@ -93,6 +93,7 @@
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#modalId"
+                (click)="getUserPayload()"
               >
                 Editar Informacion
               </button>
@@ -127,6 +128,7 @@
                             class="form-control"
                             type="tel"
                             readonly
+                            disabled
                             value="{{ payloadFromLogin[0]?._id }}"
                            
                           />
@@ -189,7 +191,9 @@
                           <div class="alert alert-danger" role="alert" *ngIf="stateActiveAlertPassword">
                             <strong>LAS CONTRASEÑAS NO COINCIDEN</strong> 
                           </div>
-                          
+                          <div class="alert alert-success" role="alert" *ngIf="statusUpdate">
+                            <strong>PERFIL ACTUALIZADO</strong> 
+                          </div>
                           <hr />
                           <span>Rol Actual</span>
                           <input
@@ -205,8 +209,9 @@
                           type="button"
                           class="btn btn-secondary"
                           data-bs-dismiss="modal"
+                          
                         >
-                          Cancelar
+                          Cerrar Formulario
                         </button>
                         <button type="submit" class="btn btn-primary" [disabled]="formUpdateProfile.invalid">
                           Guardar Informacion

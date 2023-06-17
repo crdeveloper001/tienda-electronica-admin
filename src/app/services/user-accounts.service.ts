@@ -23,5 +23,9 @@ export class UserAccountsService {
   PutUserAccount(update:IUserAccounts):Observable<IUserAccounts>{
     return this.httpRequest.put<IUserAccounts>( Endpoints.BASE_ENDPOINT+Endpoints.serviceUserAccounts,update);
   }
+
+  DeleteUserAccount(id:Number):Observable<Number>{
+    return this.httpRequest.delete<Number>(Endpoints.BASE_ENDPOINT+Endpoints.serviceUserAccounts+id);
+  }
   
 }
