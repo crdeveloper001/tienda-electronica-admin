@@ -106,6 +106,8 @@ export class ProfileComponent implements OnInit {
       this.service.PutUserAccount(this.payloadUpdateProfile).subscribe(
         (result: any) => {
           alert(result)
+          console.log(result);
+          
          },
         (error: HttpErrorResponse) => {
 

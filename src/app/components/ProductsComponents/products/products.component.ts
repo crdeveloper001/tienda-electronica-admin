@@ -10,7 +10,7 @@ import { log } from "console";
 import { observable } from "rxjs";
 import { IProducts } from "src/app/interfaces/Products";
 import { ProductsService } from "src/app/services/products.service";
-import { SharedInformationUtils } from "src/app/services/utils/send-info-to-edit-product.service";
+import { SharedInformationUtils } from "src/app/services/utils/share-information-utils";
 
 @Component({
   selector: "app-products",

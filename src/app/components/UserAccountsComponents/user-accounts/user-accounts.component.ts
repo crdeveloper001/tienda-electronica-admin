@@ -19,6 +19,8 @@ export class UserAccountsComponent implements OnInit {
   updateUserAccount: IUserAccounts;
   updateAccountForm: FormGroup;
   stateUserAccountActive: string = "";
+  stateUpdateUserAccount: boolean = false;
+  userAccountName: string = "";
   dynamicId: Number = 0;
   constructor(
     private service: UserAccountsService,
@@ -68,6 +70,7 @@ export class UserAccountsComponent implements OnInit {
   /**Obtiene dinamicamente la informacion seleccionada del usuario y lo coloca en el formulario reactivo */
   GetCurrentUserPayload(item: IUserAccounts) {
     this.dynamicId = item._id;
+    this.userAccountName = item.clientUsername;
     this.updateAccountForm.get("InputId")?.setValue(item._id);
     this.updateAccountForm.get("InputName")?.setValue(item.clientName);
     this.updateAccountForm.get("InputLastName")?.setValue(item?.clientLastName);
@@ -113,9 +116,24 @@ export class UserAccountsComponent implements OnInit {
     this.service.PutUserAccount(this.updateUserAccount).subscribe(
       (result: any) => {
         alert(JSON.stringify(result));
+
       },
       (error: HttpErrorResponse) => {
-        alert(JSON.stringify(error.error.text));
+        let resultMessage = error.error.text;
+
+        switch (resultMessage) {
+          case "User account updated":
+            this.stateUpdateUserAccount = true
+            setTimeout(() => {
+              this.stateUpdateUserAccount = false
+            }, 5000);
+
+
+            break;
+          default:
+            this.stateUpdateUserAccount = false;
+            break;
+        }
       }
     );
   }
@@ -138,5 +156,5 @@ export class UserAccountsComponent implements OnInit {
       alert("No se elimino el usuario");
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

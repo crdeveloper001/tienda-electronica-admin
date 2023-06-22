@@ -9,6 +9,10 @@ export class MenuComponent implements OnInit {
 
   constructor() { }
 
+  CleanPayload(){
+    localStorage.clear();
+  }
+
   ngOnInit(): void {
   }
 
