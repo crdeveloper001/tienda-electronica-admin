@@ -194,10 +194,17 @@
                       <button type="button" class="btn btn-danger mt-3" (click)="DeleteUserAccount()">
                         Eliminar Cuenta
                       </button>
+                      
+                      <div class="alert alert-success mt-3" role="alert" *ngIf="stateUpdateUserAccount">
+                        <strong>Cuenta "{{userAccountName}}" actualizada</strong> 
+                      </div>
                     </div>
                   </form>
                 </div>
                 <div class="modal-footer">
+
+                 
+                  
                   <button
                     type="button"
                     class="btn btn-secondary"

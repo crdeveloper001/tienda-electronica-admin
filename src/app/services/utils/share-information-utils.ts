@@ -10,10 +10,13 @@ export class SharedInformationUtils {
 
   private dataSubject: BehaviorSubject<IProducts> = new BehaviorSubject<IProducts>(null!);
   data$: Observable<IProducts> = this.dataSubject.asObservable();
+  
 
   sendData(data: IProducts) {
     this.dataSubject.next(data);
   }
+
+  
 
   constructor() { }
 }

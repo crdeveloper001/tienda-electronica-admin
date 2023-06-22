@@ -1,1 +1,116 @@
 <app-menu></app-menu>
+<hr>
+<h1>Ordenes del sistema : {{generalOrders.length}}</h1>
+<div class="alert alert-info" role="alert" *ngIf="generalOrders.length == 0 ? true : false">
+    <strong>No hay ordenes en el sistema</strong>
+</div>
+
+<hr>
+<button type="button" class="btn btn-primary ml-3" (click)="GetCustomerOrders()">Refrescar</button>
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4" *ngFor="let item of generalOrders">
+            <div class="card border border-success">
+
+                <div class="card-body">
+                    <div class="text-center">
+                        <img classname="img-responsive" src="/assets/order.png" alt="Title">
+                    </div>
+                    <hr>
+                    <h5 class="text-left">Orden de compra: {{item?._id}}</h5>
+                    <hr>
+                    <h5 class="text-left">Cliente: {{item.client.clientName}} {{item.client.clientLastName}}</h5>
+                    <hr>
+                    <h5 class="text-left">Direccion del cliente:</h5>
+                    <textarea readonly class="form-control" name="ClientDirection" id="ClientDirection" cols="30"
+                        rows="5">{{item.client.clientDirection}}</textarea>
+                    <hr>
+                    <h5 class="text-left">Correo Electronico: <a
+                            href="mailto:{{item.client.clientEmail}}">{{item.client.clientEmail}}</a></h5>
+                    <hr>
+                    <h5 class="text-left">Telefono: {{item.client.clientPhone}}</h5>
+                    <hr>
+                    <h5 class="text-left">Cantidad de productos ordenados: <strong>{{item.products.length}}</strong>
+                    </h5>
+                    <hr>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary mx-auto d-block" data-bs-toggle="modal"
+                        data-bs-target="#modalId" (click)="ObtainIndividualOrderFromCustomer(item.products)"> 
+                        Ver Productos Ordenados
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-sm modal-fullscreen" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalTitleId">Lista de Productos del cliente {{item.client.clientName}}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+
+                                </div>
+                                <div class="modal-body">
+
+
+                                    <div class="table-responsive">
+                                        <table class="table table-info">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Id de Producto</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Categoria</th>
+                                                    <th scope="col">Imagen de Producto</th>
+                                                    <th scope="col">Cantidad Solicitada</th>
+                                                    <th scope="col">Stock en Bodega</th>
+                                                    <th scope="col">Acciones de Orden</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="" *ngFor="let itemProduct of dynamicCustomerOrders">
+                                                    <td scope="row">{{itemProduct._id}}</td>
+                                                    <td>{{itemProduct.productName}}</td>
+                                                    <td>{{itemProduct.productType}}</td>
+                                                    <td><img style="width: 125px" class="img-fluid"
+                                                            src="{{itemProduct.productImageUrl}}"></td>
+                                                    <td>{{itemProduct.productQuantity}}</td>
+                                                    <td>{{itemProduct.productStock}}</td>
+                                                    <td>
+                                                        <button class="btn btn-success">Procesar Orden</button>
+                                                        <hr>
+                                                        <button class="btn btn-danger">Cancelar Orden</button>
+                                                        <hr>
+                                                        <button class="btn btn-info">Reportar problema con la
+                                                            orden</button>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <hr>
+
+                </div>
+            </div>
+            <br>
+        </div>
+
+
+    </div>
+</div>

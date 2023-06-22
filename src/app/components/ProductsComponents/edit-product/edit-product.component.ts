@@ -9,7 +9,7 @@ import {
 import { Router } from "@angular/router";
 import { IProducts } from "src/app/interfaces/Products";
 import { ProductsService } from "src/app/services/products.service";
-import { SharedInformationUtils } from "src/app/services/utils/send-info-to-edit-product.service";
+import { SharedInformationUtils } from "src/app/services/utils/share-information-utils";
 
 @Component({
   selector: "app-edit-product",

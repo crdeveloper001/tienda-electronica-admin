@@ -6,4 +6,5 @@ export interface IProducts{
    productImageUrl:string;
    productPrice:Number;
    productStock:Number;
+   productQuantity?:Number;
 }
