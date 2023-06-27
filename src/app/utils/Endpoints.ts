@@ -5,7 +5,7 @@ export class Endpoints{
     //Authorization URIS
     public static auth_Endpoint:string = "/api/Authorization/";
 
-    public static fileAttach:string ="api/FilesUpload/"
+    public static fileAttach:string ="/api/FilesUpload/"
 
     //Products URIS
     public static serviceProduct:string = "/api/Products/";

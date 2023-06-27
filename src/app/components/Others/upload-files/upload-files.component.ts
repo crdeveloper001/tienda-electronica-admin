@@ -9,31 +9,37 @@ import { AttachmentsService } from 'src/app/services/attachments.service';
   styleUrls: ['./upload-files.component.css']
 })
 export class UploadFilesComponent implements OnInit {
-
   selectedFile: File | null = null;
-  attachmentForm:FormGroup
 
-  constructor(private service:AttachmentsService,private formBuilder:FormBuilder) {
-    this.attachmentForm = this.formBuilder.group({
-      ImageFile: new FormControl('',Validators.required)
-    })
+  constructor(private service: AttachmentsService) {
+
   }
   onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.attachmentForm.get("ImageFile")?.setValue(file)
+    this.selectedFile = event.target.files[0];
   }
-  UploadImage(){
-    const formData = new FormData();
-    formData.append('file',this.attachmentForm.get("ImageFile")?.value)
+  UploadImage() {
 
-    this.service.PostAttachImage(formData).subscribe(result =>{
-      alert("success")
-    },(error:HttpErrorResponse) =>{
-      alert(JSON.stringify(error))
-    })
+    if (this.selectedFile) {
+      const formData = new FormData();
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+     
+     
+      //console.log(formData);
+      this.service.PostAttachImage(formData).subscribe(
+        result => {
+          alert(JSON.stringify(result))
+        },
+        error =>{
+          alert(JSON.stringify(error))
+        }
+
+
+      )
+    }
+
   }
- 
-  
+
+
 
   ngOnInit(): void {
   }
