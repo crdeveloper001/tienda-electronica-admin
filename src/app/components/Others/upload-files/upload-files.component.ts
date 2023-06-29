@@ -17,7 +17,7 @@ export class UploadFilesComponent implements OnInit {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
-  UploadImage() {
+  async UploadImage() {
 
     if (this.selectedFile) {
       const formData = new FormData();
@@ -25,7 +25,9 @@ export class UploadFilesComponent implements OnInit {
      
      
       //console.log(formData);
-      this.service.PostAttachImage(formData).subscribe(
+      (await
+        //console.log(formData);
+        this.service.PostAttachImage(formData)).subscribe(
         result => {
           alert(JSON.stringify(result))
         },

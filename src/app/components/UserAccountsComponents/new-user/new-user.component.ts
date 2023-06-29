@@ -18,6 +18,7 @@ export class NewUserComponent implements OnInit {
   profilePhoto: any
   constructor(private service: UserAccountsService, private uploadFile: AttachmentsService, private formBuilder: FormBuilder) {
     this.userAccountForm = this.formBuilder.group({
+      InputUriProfile: new FormControl(''),
       InputId: new FormControl("", Validators.required),
       InputName: new FormControl("", Validators.required),
       InputLastName: new FormControl("", Validators.required),
@@ -39,55 +40,44 @@ export class NewUserComponent implements OnInit {
       clientPhone: 0,
       clientRoleType: '',
       clientUsername: '',
-      clientUriProfile:'',
+
       userAccountActive: false
     }
 
 
   }
-  onFileSelected(event: any) {
+  async onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-  }
-  UploadImage() {
 
-
-
-    return this.resultUpload;
-
-  }
-
-  async AddNewUser() {
-    debugger
     if (this.selectedFile) {
       const formData = new FormData();
       formData.append('image', this.selectedFile, this.selectedFile.name);
       //console.log(formData);
-      this.uploadFile.PostAttachImage(formData).subscribe(
-        (result: any) => {
-          this.newUserAccount.clientUriProfile = result.result
-          console.log(JSON.stringify(result.result));
-          this.resultUpload = result.result
+      await (await this.uploadFile.PostAttachImage(formData)).subscribe(
+        (result: string) => {
+          this.userAccountForm.get('InputUriProfile')?.patchValue(result)
 
         },
         (error: HttpErrorResponse) => {
 
-          this.resultUpload = error.error.text
-
-          console.log("error: " + JSON.stringify(this.resultUpload));
+          this.userAccountForm.get('InputUriProfile')?.patchValue(error.error.text)
 
         }
 
 
       )
+
+
     }
+  }
 
 
-
-    console.log("respuesta de metodo resultU0pload: " + `${this.resultUpload}`);
-
+  async AddNewUser() {
+    
     this.newUserAccount = {
       _id: this.userAccountForm.get('InputId')?.value,
       clientName: this.userAccountForm.get('InputName')?.value,
+      clientUriProfile: this.userAccountForm.get('InputUriProfile')?.value,
       clientLastName: this.userAccountForm.get('InputLastName')?.value,
       clientPhone: this.userAccountForm.get('InputPhone')?.value,
       clientDirection: this.userAccountForm.get('InputDirection')?.value,
@@ -98,11 +88,16 @@ export class NewUserComponent implements OnInit {
       //userAccountActive:"true"
     }
 
-    this.service.PostUserAccount(this.newUserAccount).subscribe((result: any) => {
+    await (await this.service.PostUserAccount(this.newUserAccount)).subscribe((result: any) => {
       alert(JSON.stringify(result));
     }, (error: HttpErrorResponse) => {
       alert(JSON.stringify(error))
     })
+  }
+
+  async CompleteRegisterUser() {
+    await this.AddNewUser()
+    
   }
 
 

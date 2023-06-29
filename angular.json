@@ -103,7 +103,6 @@
       }
     }
   },
-  "defaultProject": "tienda-electronica-admin",
   "cli": {
     "analytics": false
   }

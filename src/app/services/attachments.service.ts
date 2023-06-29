@@ -9,9 +9,9 @@ export class AttachmentsService {
 
   constructor(private httpRequest:HttpClient) { }
 
-  PostAttachImage(formData:FormData){
+  async PostAttachImage(formData:FormData){
 
     console.log(formData);
-    return this.httpRequest.post<any>(Endpoints.BASE_ENDPOINT+Endpoints.fileAttach,formData);
+    return this.httpRequest.post<string>(Endpoints.BASE_ENDPOINT+Endpoints.fileAttach,formData);
   }
 }
