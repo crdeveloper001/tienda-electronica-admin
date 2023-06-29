@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
   ) {
     this.formUpdateProfile = this.builderForm.group({
       InputName: new FormControl("", Validators.required),
+      InputUriProfile: new FormControl(""),
       InputLastName: new FormControl("", Validators.required),
       InputPhone: new FormControl("", Validators.required),
       InputEmail: new FormControl("", Validators.required),
@@ -43,6 +44,7 @@ export class ProfileComponent implements OnInit {
 
     this.payloadUpdateProfile = {
       _id: 0,
+      clientUriProfile:"",
       clientDirection: "",
       clientEmail: "",
       clientLastName: "",
