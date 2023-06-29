@@ -19,7 +19,7 @@ export class UserAccountsService {
     return this.httpRequest.get<IUserAccounts[]>(Endpoints.BASE_ENDPOINT + Endpoints.serviceUserAccounts);
 
   }
-  PostUserAccount(userAccount: IUserAccounts): Observable<IUserAccounts> {
+  async PostUserAccount(userAccount: IUserAccounts): Promise<Observable<IUserAccounts>> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Content-Type', 'application/json')

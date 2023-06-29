@@ -1,6 +1,5 @@
 export interface IUserAccounts{
     _id:Number;
-    clientProfileImage?:FormData
     clientUriProfile?:string
     clientName:string;
     clientLastName:string;
